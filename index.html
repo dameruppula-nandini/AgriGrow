@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Recommended Crops</title>
+</head>
+<body>
+    <section class="sub-header">
+        <nav>
+    
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="soil.html">SOIL</a></li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <h1>AGRIGROW</h1>
+    <P>provides the crop for specified season</P>
+    <form id="cropForm">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location"><br><br>
+        
+        <label for="season">Season:</label>
+        <select id="season" name="season">
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+            <option value="autumn">Autumn</option>
+            <option value="winter">Winter</option>
+        </select><br><br>
+        
+        <button type="button" onclick="getRecommendedCrops()">Get Recommendations</button>
+    </form>
+    
+    <div id="recommendedCrops"></div>
+
+    <script>
+        
+        function getRecommendedCrops() {
+            var location = document.getElementById("location").value;
+            var season = document.getElementById("season").value;
+            var recommendedCrops;
+            
+            // Your Python function converted to JavaScript
+            if (season === 'spring') {
+                recommendedCrops = ['Carrots', 'Lettuce', 'Strawberries'];
+            } else if (season === 'summer') {
+                recommendedCrops = ['Tomatoes', 'Cucumbers', 'Watermelons'];
+            } else if (season === 'autumn') {
+                recommendedCrops = ['Pumpkins', 'Apples', 'Corn'];
+            } else if (season === 'winter') {
+                recommendedCrops = ['Cabbage', 'Broccoli', 'Brussels Sprouts'];
+            } else {
+                recommendedCrops = [];
+            }
+
+            var resultDiv = document.getElementById("recommendedCrops");
+            resultDiv.innerHTML = "<h2>Recommended Crops for " + season + " in " + location + "</h2>";
+            if (recommendedCrops.length > 0) {
+                var ul = document.createElement("ul");
+                recommendedCrops.forEach(function(crop) {
+                    var li = document.createElement("li");
+                    li.textContent = crop;
+                    ul.appendChild(li);
+                });
+                resultDiv.appendChild(ul);
+            } else {
+                resultDiv.innerHTML += "<p>No crops recommended for this season.</p>";
+            }
+        }
+    </script>
+</body>
+</html>

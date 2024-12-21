@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style1.css">
+<title>Soil Type Details Form</title>
+</head>
+<body>
+    <section class="sub-header">
+        <nav>
+          
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="soil.html">SOIL</a></li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+<h2>Soil Type Details Form</h2>
+<form id="soilForm">
+   
+    <h3>Enter pH value only between 5 to 7</h3>
+    <label for="phLevel">pH Level:</label><br>
+    <input type="text" id="phLevel" name="phLevel"><br><br>
+
+    <input type="button" value="Get Recommendation" onclick="getRecommendation()">
+    <h3>The Type of Soil is</h3>
+</form>
+
+<div id="recommendation"></div>
+
+<script>
+function getRecommendation() {
+   
+    var pHLevel = parseFloat(document.getElementById("phLevel").value);
+
+    var recommendation;
+
+    if (pHLevel >= 5.5 && pHLevel <= 7.0) {
+        recommendation = "Clay Soil";
+    } else if (pHLevel >= 6.0 && pHLevel <= 7.5) {
+        recommendation = "Sandy Soil or Loamy Soil";
+    } else if (pHLevel >= 3.5 && pHLevel <= 5.5) {
+        recommendation = "Peaty Soil";
+    } else if (pHLevel >= 7.5 && pHLevel <= 8.5) {
+        recommendation = "Chalky Soil";
+    } else {
+        recommendation = "No recommendation available for the provided pH level.";
+    }
+
+    // Display recommendation
+    document.getElementById("recommendation").innerHTML = "Recommended soil type for pH level " + pHLevel + ": " + recommendation;
+}
+
+</script>
+</body>                  
